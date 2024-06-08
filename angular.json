@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Libreria-Market-2.0": {
+    "store": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:class": {
@@ -38,7 +38,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/libreria-market-2.0",
+            "outputPath": "dist/store",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -54,7 +54,10 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "server": "src/main.server.ts",
+            "prerender": false,
+            "ssr": false
           },
           "configurations": {
             "production": {
@@ -84,10 +87,12 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Libreria-Market-2.0:build:production"
+              "buildTarget": "store:build:production",
+              "proxyConfig": "proxy.config.json"
             },
             "development": {
-              "buildTarget": "Libreria-Market-2.0:build:development"
+              "buildTarget": "store:build:development",
+              "proxyConfig": "proxy.config.json"
             }
           },
           "defaultConfiguration": "development"

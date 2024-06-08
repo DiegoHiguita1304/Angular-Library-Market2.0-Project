@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Libreria-Market</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        .nav-link {
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 8px 12px;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            border-color: white;
+        }
+
+        .hero {
+            background-image: url('https://coleccionesdigitales.biblored.gov.co/files/fullsize/afe558fa2008fcef876d31564315288a.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            position: relative;
+            color: white;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero-button {
+            padding: 12px 24px;
+            background-color: #4a5568;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+        }
+
+        .hero-button:hover {
+            background-color: #2d3748;
+        }
+
+        .info-section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .info-title {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .info-text {
+            font-size: 18px;
+            color: #4a5568;
+            margin-bottom: 40px;
+        }
+
+        .info-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <!-- Barra de navegación -->
+    <nav class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold">Libreria-Market</a>
+            <ul class="flex space-x-4">
+                <li><a href="/book" class="nav-link">Books</a></li>
+                <li><a href="#" class="nav-link">Contact</a></li>
+                <li><a href="#" class="nav-link cart-icon"><i class="fas fa-shopping-cart"></i></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Sección Hero -->
+    <section class="hero">
+        <div class="hero-overlay">
+            <h1 class="hero-title">Descubre Nuevos Mundos</h1>
+            <p class="hero-subtitle">La lectura es el pasaporte que nos lleva a explorar mundos desconocidos, vivir aventuras inimaginables y descubrir la magia que reside entre cada página.</p>
+            <a href="/book" class="hero-button">Ver Libros</a>
+        </div>
+    </section>
+
+    <!-- Sección de Información -->
+    <section class="info-section">
+        <h2 class="info-title">Bienvenido a Libreria-Market</h2>
+        <p class="info-text">En nuestra librería, encontrarás una amplia selección de libros de todos los géneros. Nuestro objetivo es fomentar el amor por la lectura y proporcionar a nuestros clientes libros que inspiren y eduquen. Navega por nuestra colección y encuentra el libro perfecto para ti.</p>
+        <!-- <img src="" alt="Books Image" class="info-image"> -->
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Libreria-Market. Todos los derechos reservados.</p>
+            <div class="mt-4">
+                <a href="https://www.facebook.com" target="_blank" class="text-white mr-4">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com" target="_blank" class="text-white mr-4">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.google.com" target="_blank" class="text-white mr-4">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a href="https://twitter.com" target="_blank" class="text-white mr-4">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.tiktok.com" target="_blank" class="text-white">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+    
+</body>
+
+</html>
