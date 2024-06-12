@@ -50,4 +50,16 @@
   .fixed {
     position: fixed;
   }
+  .book-card {
+    transition: transform 0.2s;
+  }
+  .book-card:hover {
+    transform: scale(1.05);
+  }
+  .truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   

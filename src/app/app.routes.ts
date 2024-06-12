@@ -5,6 +5,8 @@ import { ContactComponent } from './contact/contact.component';
 import { NgModule } from '@angular/core';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { FilteredBooksComponent } from './components/pages/book/filtered-books/filtered-books.component';
+// import { CategoriaComponent } from './categoria/categoria.component';
 
 export const routes: Routes = [
     {
@@ -23,6 +25,10 @@ export const routes: Routes = [
      },
      { path: 'register', 
         component: RegisterComponent
+     },
+     {
+        path: 'books/category/:category',
+        component: FilteredBooksComponent
      }
 ];
 

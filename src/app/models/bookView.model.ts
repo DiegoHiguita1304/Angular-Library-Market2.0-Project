@@ -1,10 +1,10 @@
 export interface BookView {
-id: any;
+    id_libro: number;
     nombre: string;
     titulo: string;
     categorias_nombre: string;
-    precio: number
-    imagen: string;
+    precio: number;
+    urls: string;
   }
   export interface Book {
     id: number;
@@ -12,6 +12,6 @@ id: any;
     titulo: string;
     categorias_nombre: string;
     precio: number;
-    imagen: string; // Nueva propiedad para la URL de la imagen
+    urls: string; // Nueva propiedad para la URL de la imagen
   }
   

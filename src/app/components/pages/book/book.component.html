@@ -25,22 +25,25 @@
                 d="m1 1 4 4 4-4" />
             </svg>
           </button>
-          <div id="dropdown" class="hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-50 absolute mt-5"
-            [ngClass]="{ 'show': dropdownOpen }">
-            <ul class="py-2 text-sm text-gray-700">
-              <li><button type="button" class="dropdown-item">Terror</button></li>
-              <li><button type="button" class="dropdown-item">Romance</button></li>
-              <li><button type="button" class="dropdown-item">Drama</button></li>
-              <li><button type="button" class="dropdown-item">Narrativo</button></li>
-            </ul>
-          </div>
 
+          <div>
+            <button (click)="toggleDropdown()"></button>
+            <div id="dropdown" class="hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-50 absolute mt-5"
+                 [ngClass]="{ 'show': dropdownOpen }">
+              <ul class="py-2 text-sm text-gray-700">
+                <li *ngFor="let category of categories">
+                  <button type="button" class="dropdown-item" (click)="selectCategory(category)">{{ category }}</button>
+                </li>
+              </ul>
+            </div>
+          </div>
           <div class="relative w-full">
             <input type="search" id="search-dropdown"
               class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-              placeholder="Search Mockups, Logos, Design Templates..." required />
+              placeholder="books..." required (input)="onSearch($event)" [(ngModel)]="searchText" />
             <button type="submit"
-              class="absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+              class="absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+              (click)="onSearchButton()">
               <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                 viewBox="0 0 20 20">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -49,6 +52,7 @@
               <span class="sr-only">Search</span>
             </button>
           </div>
+          
         </div>
       </form>
 
@@ -61,21 +65,20 @@
       </ul>
     </div>
   </nav>
-  <div class="my-10 container grid grid-cols-3 gap-20">
-    <a *ngFor="let book of viewBooksAll()" href="#"
+  <div class="my-20 container grid grid-cols-2 gap-10">
+    <a *ngFor="let book of books()" href="#"
       class="relative flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-      <img [src]="book.imagen" [alt]="book.titulo" class="w-full h-auto md:w-48 md:h-auto object-cover md:rounded-none md:rounded-l-lg">
+      <img [src]="book.urls" [alt]="book.titulo" class="w-full h-auto md:w-48 md:h-auto object-cover md:rounded-none md:rounded-l-lg">
       <div class="flex flex-col justify-between p-4 leading-normal w-full">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ book.titulo }}</h5>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ book.nombre }}.</p>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ book.categorias_nombre }}.</p>
-        <p class="absolute bottom-4 left-4 mb-3 font-normal text-gray-700 dark:text-gray-400">{{ book.precio }}.</p>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ book.precio }}.000</p>
         
-        <!-- Botón de carrito de compras -->
-        <button (click)="addToCart(book.id)" class="absolute bottom-1 right-1 bg-gray-800 text-white py-1 px-2 rounded-lg shadow hover:bg-gray-700">
+        <button (click)="addToCart(book.id_libro)" class="absolute bottom-1 right-1 bg-gray-800 text-white py-1 px-2 rounded-lg shadow hover:bg-gray-700">
           <i class="fas fa-shopping-cart mr-2"></i>
           Agregar al carrito
-        </button>
+        </button> 
       </div>
     </a>
   </div>
@@ -110,6 +113,4 @@
   </div>
 </footer>
 
-<div *ngFor="let book of books()">
-  <img src="{{ book.imagen }}" alt="">
-</div>
+

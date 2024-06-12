@@ -7,14 +7,22 @@ import { Book, BookView } from '../models/bookView.model';
   providedIn: 'root'
 })
 export class BookService {
+getBooksByCategory(category: string) {
+  throw new Error('Method not implemented.');
+  
+}
 addToCart(bookId: string) {
   throw new Error('Method not implemented.');
 }
 
 private http = inject(HttpClient)
 
+// getAllBooks(){
+//   return this.http.get<BookView[]>('/Libreria-Market/api/books/all')
+// }
+
 getAllBooks(){
-  return this.http.get<Book[]>('/Libreria-Market/api/books/all')
+  return this.http.get<BookView[]>('/Libreria-Market/api/bookview/all')
 }
 
 viewBooks(){
