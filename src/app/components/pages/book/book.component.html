@@ -6,58 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
   <title>Book List</title>
-
-
-  <style>
-    /* Barra de navegación */
-    .nav-link {
-      font-size: 18px;
-      font-weight: bold;
-      text-transform: uppercase;
-      padding: 8px 12px;
-      border-bottom: 2px solid transparent;
-      transition: border-color 0.3s ease;
-    }
-
-    .nav-link:hover {
-      border-color: white;
-    }
-
-    /* Menú desplegable */
-    #dropdown {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      z-index: 10;
-      display: none;
-      background-color: white;
-      border: 1px solid #ddd;
-      border-radius: 0.375rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    #dropdown.show {
-      display: block;
-    }
-
-    .dropdown-item {
-      padding: 10px 20px;
-      cursor: pointer;
-    }
-
-    .dropdown-item:hover {
-      background-color: #f3f4f6;
-    }
-
-    /* Botón de carrito de compras */
-    .cart-icon {
-      position: relative;
-    }
-
-    .cart-icon .fas {
-      font-size: 24px;
-    }
-  </style>
 </head>
 
 <body class="bg-gray-100 p-6">
@@ -69,24 +17,23 @@
       <form class="relative max-w-lg mx-auto">
         <div class="flex items-center">
           <button id="dropdown-button"
-        class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100"
-        type="button" (click)="toggleDropdown()">Categories
-  <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-       viewBox="0 0 10 6">
-    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="m1 1 4 4 4-4"/>
-  </svg>
-</button>
-<div id="dropdown"
-     class="hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-50 absolute mt-5"
-     [ngClass]="{ 'show': dropdownOpen }">
-  <ul class="py-2 text-sm text-gray-700">
-    <li><button type="button" class="dropdown-item">Terror</button></li>
-    <li><button type="button" class="dropdown-item">Novela</button></li>
-    <li><button type="button" class="dropdown-item">Ciencia Ficción</button></li>
-    <li><button type="button" class="dropdown-item">Cronica</button></li>
-  </ul>
-</div>
+            class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100"
+            type="button" (click)="toggleDropdown()">Categories
+            <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+              viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m1 1 4 4 4-4" />
+            </svg>
+          </button>
+          <div id="dropdown" class="hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-50 absolute mt-5"
+            [ngClass]="{ 'show': dropdownOpen }">
+            <ul class="py-2 text-sm text-gray-700">
+              <li><button type="button" class="dropdown-item">Terror</button></li>
+              <li><button type="button" class="dropdown-item">Romance</button></li>
+              <li><button type="button" class="dropdown-item">Drama</button></li>
+              <li><button type="button" class="dropdown-item">Narrativo</button></li>
+            </ul>
+          </div>
 
           <div class="relative w-full">
             <input type="search" id="search-dropdown"
@@ -107,203 +54,62 @@
 
       <ul class="flex space-x-4">
         <li><a href="#" class="nav-link">Home</a></li>
-        <li><a href="#" class="nav-link">Books</a></li>
-        <li><a href="#" class="nav-link">Contact</a></li>
+        <li><a href="/contact" class="nav-link">Contact</a></li>
 
         <!-- Icono de carrito de compras -->
         <li><a href="#" class="nav-link cart-icon"><i class="fas fa-shopping-cart"></i></a></li>
       </ul>
     </div>
   </nav>
-  <div class="container mx-auto">
-    <div class="flex justify-between space-x-8">
-        <div class="max-w-md w-full bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden flex relative">
-            <img src="https://imagessl2.casadellibro.com/a/l/s5/62/9788498382662.webp" alt="Imagen del Libro 1" class="w-1/3 h-auto cursor-pointer book-image">
-            <div class="p-6">
-                <h5 class="text-xl font-bold mb-2">Harry Potter y la piedra filosofal</h5>
-                <p class="text-gray-700 mb-2">J. K. Rowling</p>
-                <p class="text-gray-700">Novela</p>
-                <button class="absolute bottom-2 right-2 bg-blue-500 text-white text-sm px-2 py-1 rounded">Agregar al carrito</button>
-            </div>
-        </div>
-        <div class="max-w-md w-full bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden flex relative">
-            <img src="https://imagessl3.casadellibro.com/a/l/s7/43/9788483835043.webp" alt="Imagen del Libro 2" class="w-1/3 h-auto cursor-pointer book-image">
-            <div class="p-6">
-                <h5 class="text-xl font-bold mb-2">Norwegian Wood</h5>
-                <p class="text-gray-700 mb-2">Haruki Murakami</p>
-                <p class="text-gray-700">Novela</p>
-                <button class="absolute bottom-2 right-2 bg-blue-500 text-white text-sm px-2 py-1 rounded">Agregar al carrito</button>
-            </div>
-        </div>
-        <div class="max-w-md w-full bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden flex relative">
-            <img src="https://imagessl3.casadellibro.com/a/l/s7/93/9788497593793.webp" alt="Imagen del Libro 3" class="w-1/3 h-auto cursor-pointer book-image">
-            <div class="p-6">
-                <h5 class="text-xl font-bold mb-2">It</h5>
-                <p class="text-gray-700 mb-2">Stephen King</p>
-                <p class="text-gray-700">Terror</p>
-                <button class="absolute bottom-2 right-2 bg-blue-500 text-white text-sm px-2 py-1 rounded">Agregar al carrito</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container mx-auto mt-8">
-    <div class="flex justify-between space-x-8">
-        <div class="max-w-md w-full bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden flex relative">
-            <img src="https://imagessl8.casadellibro.com/a/l/s7/88/9788484284888.webp" alt="Imagen del Libro 4" class="w-1/3 h-auto cursor-pointer book-image">
-            <div class="p-6">
-                <h5 class="text-xl font-bold mb-2">Orgullo y prejuicio</h5>
-                <p class="text-gray-700 mb-2">Jane Austen</p>
-                <p class="text-gray-700">Novela</p>
-                <button class="absolute bottom-2 right-2 bg-blue-500 text-white text-sm px-2 py-1 rounded">Agregar al carrito</button>
-            </div>
-        </div>
-        <div class="max-w-md w-full bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden flex relative">
-            <img src="https://imagessl4.casadellibro.com/a/l/s7/34/9789588773834.webp" alt="Imagen del Libro 5" class="w-1/3 h-auto cursor-pointer book-image">
-            <div class="p-6">
-                <h5 class="text-xl font-bold mb-2">1984</h5>
-                <p class="text-gray-700 mb-2">George Orwell</p>
-                <p class="text-gray-700">Ciencia Ficción</p>
-                <button class="absolute bottom-2 right-2 bg-blue-500 text-white text-sm px-2 py-1 rounded">Agregar al carrito</button>
-            </div>
-        </div>
-        <div class="max-w-md w-full bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden flex relative">
-            <img src="https://imagessl0.casadellibro.com/a/l/s7/80/9788499089980.webp" alt="Imagen del Libro 6" class="w-1/3 h-auto cursor-pointer book-image">
-            <div class="p-6">
-                <h5 class="text-xl font-bold mb-2">El viejo y el mar</h5>
-                <p class="text-gray-700 mb-2">Ernest Hemingway</p>
-                <p class="text-gray-700">Novela</p>
-                <button class="absolute bottom-2 right-2 bg-blue-500 text-white text-sm px-2 py-1 rounded">Agregar al carrito</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container mx-auto mt-8">
-    <div class="flex justify-between space-x-8">
-        <div class="max-w-md w-full bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden flex relative">
-            <img src="https://imagessl1.casadellibro.com/a/l/s7/61/9788420651361.webp" alt="Imagen del Libro 7" class="w-1/3 h-auto cursor-pointer book-image">
-            <div class="p-6">
-                <h5 class="text-xl font-bold mb-2">La Metamorfosis</h5>
-                <p class="text-gray-700 mb-2">Franz Kafka</p>
-                <p class="text-gray-700">Ciencia Ficción</p>
-                <button class="absolute bottom-2 right-2 bg-blue-500 text-white text-sm px-2 py-1 rounded">Agregar al carrito</button>
-            </div>
-        </div>
-        <div class="max-w-md w-full bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden flex relative">
-            <img src="https://imagessl1.casadellibro.com/a/l/s7/61/9788439731061.webp" alt="Imagen del Libro 8" class="w-1/3 h-auto cursor-pointer book-image">
-            <div class="p-6">
-                <h5 class="text-xl font-bold mb-2">Guerra Y Paz</h5>
-                <p class="text-gray-700 mb-2">Leon Tolstoi</p>
-                <p class="text-gray-700">Novela</p>
-                <button class="absolute bottom-2 right-2 bg-blue-500 text-white text-sm px-2 py-1 rounded">Agregar al carrito</button>
-            </div>
-        </div>
-        <div class="max-w-md w-full bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden flex relative">
-            <img src="https://imagessl1.casadellibro.com/a/l/s7/01/9788499899701.webp" alt="Imagen del Libro 9" class="w-1/3 h-auto cursor-pointer book-image">
-            <div class="p-6">
-                <h5 class="text-xl font-bold mb-2">La Señora Dalloway</h5>
-                <p class="text-gray-700 mb-2">Virginia Woolf</p>
-                <p class="text-gray-700">Novela</p>
-                <button class="absolute bottom-2 right-2 bg-blue-500 text-white text-sm px-2 py-1 rounded">Agregar al carrito</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container mx-auto mt-8">
-    <div class="flex justify-between space-x-8">
-        <div class="max-w-md w-full bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden flex relative">
-            <img src="https://imagessl4.casadellibro.com/a/l/s7/84/9788466745284.webp" alt="Imagen del Libro 10" class="w-1/3 h-auto cursor-pointer book-image">
-            <div class="p-6">
-                <h5 class="text-xl font-bold mb-2">Las aventuras de Tom Sawyer</h5>
-                <p class="text-gray-700 mb-2">Mark Twain</p>
-                <p class="text-gray-700">Novela</p>
-                <button class="absolute bottom-2 right-2 bg-blue-500 text-white text-sm px-2 py-1 rounded">Agregar al carrito</button>
-            </div>
-        </div>
-        <div class="max-w-md w-full bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden flex relative">
-            <img src="https://imagessl3.casadellibro.com/a/l/s7/73/9788420479873.webp" alt="Imagen del libro 11" class="w-1/3 h-auto cursor-pointer book-image">
-            <div class="p-6">
-                <h5 class="text-xl font-bold mb-2">Don Quijote de la Mancha</h5>
-                <p class="text-gray-700 mb-2">Miguel de Cervantes Saavedra</p>
-                <p class="text-gray-700">Novela</p>
-                <button class="absolute bottom-2 right-2 bg-blue-500 text-white text-sm px-2 py-1 rounded">Agregar al carrito</button>
-            </div>
-        </div>
-        <div class="max-w-md w-full bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden flex relative">
-            <img src="https://imagessl3.casadellibro.com/a/l/s7/13/9788467045413.webp" alt="Imagen del Libro 12" class="w-1/3 h-auto cursor-pointer book-image">
-            <div class="p-6">
-                <h5 class="text-xl font-bold mb-2">Asesinato en el Orient Express</h5>
-                <p class="text-gray-700 mb-2">Agatha Christie</p>
-                <p class="text-gray-700">Misterio</p>
-                <button class="absolute bottom-2 right-2 bg-blue-500 text-white text-sm px-2 py-1 rounded">Agregar al carrito</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container mx-auto mt-8">
-    <div class="flex justify-between space-x-8">
-        <div class="max-w-md w-full bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden flex relative">
-            <img src="https://imagessl3.casadellibro.com/a/l/s7/63/9788491050063.webp" alt="Imagen del Libro 13" class="w-1/3 h-auto cursor-pointer book-image">
-            <div class="p-6">
-                <h5 class="text-xl font-bold mb-2">Crimen Y Castigo</h5>
-                <p class="text-gray-700 mb-2">Fiodor Dostoievski</p>
-                <p class="text-gray-700">Humor</p>
-                <button class="absolute bottom-2 right-2 bg-blue-500 text-white text-sm px-2 py-1 rounded">Agregar al carrito</button>
-            </div>
-        </div>
-        <div class="max-w-md w-full bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden flex relative">
-            <img src="https://imagessl6.casadellibro.com/a/l/s7/86/9788420669786.webp" alt="Imagen del libro 14" class="w-1/3 h-auto cursor-pointer book-image">
-            <div class="p-6">
-                <h5 class="text-xl font-bold mb-2">El EXtranjero</h5>
-                <p class="text-gray-700 mb-2">Albert Camus</p>
-                <p class="text-gray-700">Teatro</p>
-                <button class="absolute bottom-2 right-2 bg-blue-500 text-white text-sm px-2 py-1 rounded">Agregar al carrito</button>
-            </div>
-        </div>
-        <div class="max-w-md w-full bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden flex relative">
-            <img src="https://images.cdn3.buscalibre.com/fit-in/360x360/cd/f1/cdf11578aed59c8d11891b306ea56944.jpg" alt="Imagen del Libro 15" class="w-1/3 h-auto cursor-pointer book-image">
-            <div class="p-6">
-                <h5 class="text-xl font-bold mb-2">Los Monstruos En Colombia Si Existen</h5>
-                <p class="text-gray-700 mb-2">Esteban Cruz Niño</p>
-                <p class="text-gray-700">Cronica</p>
-                <button class="absolute bottom-2 right-2 bg-blue-500 text-white text-sm px-2 py-1 rounded">Agregar al carrito</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<br>
-<!-- Footer -->
-<footer class="bg-gray-800 text-white py-1">
-  <div class="container mx-auto text-center">
-      <p>&copy; 2024 Libreria-Market. Todos los derechos reservados.</p>
-      <div class="mt-4 flex justify-center">
-          <a href="https://www.facebook.com" target="_blank" class="text-white mr-4">
-              <i class="fab fa-facebook-f text-xm"></i>
-          </a>
-          <a href="https://www.instagram.com" target="_blank" class="text-white mr-4">
-              <i class="fab fa-instagram text-xm"></i>
-          </a>
-          <a href="https://www.google.com" target="_blank" class="text-white mr-4">
-              <i class="fab fa-google text-xm"></i>
-          </a>
-          <a href="https://twitter.com" target="_blank" class="text-white mr-4">
-              <i class="fab fa-twitter text-xm"></i>
-          </a>
-          <a href="https://www.tiktok.com" target="_blank" class="text-white">
-              <i class="fab fa-tiktok text-xm"></i>
-          </a>
+  <div class="my-10 container grid grid-cols-3 gap-20">
+    <a *ngFor="let book of viewBooksAll()" href="#"
+      class="relative flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+      <img [src]="book.imagen" [alt]="book.titulo" class="w-full h-auto md:w-48 md:h-auto object-cover md:rounded-none md:rounded-l-lg">
+      <div class="flex flex-col justify-between p-4 leading-normal w-full">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ book.titulo }}</h5>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ book.nombre }}.</p>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ book.categorias_nombre }}.</p>
+        <p class="absolute bottom-4 left-4 mb-3 font-normal text-gray-700 dark:text-gray-400">{{ book.precio }}.</p>
+        
+        <!-- Botón de carrito de compras -->
+        <button (click)="addToCart(book.id)" class="absolute bottom-1 right-1 bg-gray-800 text-white py-1 px-2 rounded-lg shadow hover:bg-gray-700">
+          <i class="fas fa-shopping-cart mr-2"></i>
+          Agregar al carrito
+        </button>
       </div>
+    </a>
   </div>
-</footer>
+
   <script>
     // Manejador del menú desplegable
     document.getElementById('dropdown-button').addEventListener('click', function () {
       document.getElementById('dropdown').classList.toggle('show');
     });
-  </script>  
-</body>
-</html>
+  </script>
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-1">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2024 Libreria-Market. Todos los derechos reservados.</p>
+      <div class="mt-4">
+        <a href="https://www.facebook.com" target="_blank" class="text-white mr-4">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com" target="_blank" class="text-white mr-4">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.google.com" target="_blank" class="text-white mr-4">
+          <i class="fab fa-google"></i>
+        </a>
+        <a href="https://twitter.com" target="_blank" class="text-white mr-4">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://www.tiktok.com" target="_blank" class="text-white">
+        <i class="fab fa-tiktok"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<div *ngFor="let book of books()">
+  <img src="{{ book.imagen }}" alt="">
+</div>

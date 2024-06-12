@@ -1,4 +1,5 @@
 export interface BookView {
+id: any;
     nombre: string;
     titulo: string;
     categorias_nombre: string;

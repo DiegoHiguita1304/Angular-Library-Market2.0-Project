@@ -1,4 +1,8 @@
-.nav-link {
+form {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .nav-link {
     font-size: 18px;
     font-weight: bold;
     text-transform: uppercase;

@@ -1,8 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
 import { BookService } from '../../../services/book.service';
-import { Book } from '../../../models/book.model';
 import { CommonModule } from '@angular/common';
-import { BookView } from '../../../models/bookView.model';
+import { Book, BookView } from '../../../models/bookView.model';
+import { catchError, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-book',
@@ -12,13 +13,13 @@ import { BookView } from '../../../models/bookView.model';
   styleUrls: ['./book.component.css']
 })
 export class BookComponent {
+addToCart(arg0: any) {
+throw new Error('Method not implemented.');
+}
   private bookService = inject(BookService);
   books = signal<Book[]>([]);
   viewBooksAll = signal<BookView[]>([]);
   dropdownOpen: boolean | undefined;
-imagenes: any;
-product: any;
-https: any;
 
   ngOnInit() {
     this.getAll();
@@ -28,17 +29,23 @@ https: any;
   getAll() {
     return this.bookService.getAllBooks().subscribe(book => {
       this.books.set(book);
-    },error=>{
+    }, error => {
       'se encontro un error'
     });
   }
 
   viewBooks() {
-    return this.bookService.viewBooks().subscribe(orders => {
-      this.viewBooksAll.set(orders);
-    },error=>{
-      'error al traer la vista'
-    });
+    this.bookService.viewBooks().pipe(
+      tap(orders => {
+        this.viewBooksAll.set(orders);
+        console.log(this.viewBooksAll);
+      }),
+      catchError(error => {
+        console.error('Error al traer la vista', error);
+        return of([]);  // Devuelve un observable vacío o alguna lógica de recuperación
+      })
+    ).subscribe();
+
   }
 
   toggleDropdown(): void {
@@ -46,9 +53,18 @@ https: any;
   }
 
   // En tu componente de Angular
-addToCartHandler() {
-  // Lógica para agregar el libro al carrito
-  console.log('Agregar libro al carrito');
-}
+  addToCartHandler() {
+    // Lógica para agregar el libro al carrito
+    console.log('Agregar libro al carrito');
+  }
+
+  hideSideMenu = signal(false);
+  toogleSideMenu() {
+    this.hideSideMenu.update(prevState => !prevState);
+  }
+  
 
 }
+
+
+

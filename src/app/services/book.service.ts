@@ -1,17 +1,15 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Book } from '../models/book.model';
-import { BookView } from '../models/bookView.model';
-
-
-
-
+import { Book, BookView } from '../models/bookView.model';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
+addToCart(bookId: string) {
+  throw new Error('Method not implemented.');
+}
 
 private http = inject(HttpClient)
 
@@ -22,8 +20,6 @@ getAllBooks(){
 viewBooks(){
   return this.http.get<BookView[]>('/Libreria-Market/api/bookview/all')
 }
-
-
 
   
 }

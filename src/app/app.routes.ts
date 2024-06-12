@@ -1,6 +1,10 @@
-import { Routes } from '@angular/router';
+import { RouterModule,Routes } from '@angular/router';
 import { BookComponent } from './components/pages/book/book.component';
 import {HomeComponent} from './pages/home/home.component'
+import { ContactComponent } from './contact/contact.component';
+import { NgModule } from '@angular/core';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 export const routes: Routes = [
     {
@@ -10,5 +14,20 @@ export const routes: Routes = [
     {
         path:'book',
         component:BookComponent
-    }
+    },
+    { path: 'contact',
+        component:ContactComponent
+     },
+     { path: 'login', 
+        component: LoginComponent
+     },
+     { path: 'register', 
+        component: RegisterComponent
+     }
 ];
+
+@NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+  })
+  export class AppRoutingModule { }

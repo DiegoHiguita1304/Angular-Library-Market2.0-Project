@@ -27,23 +27,27 @@
     </div>
   </nav>
 
-<div class="container mx-auto mt-10">
-    <h2 class="text-2xl font-bold mb-4">Inicio de Sesión</h2>
+  <!-- Contenido de la página -->
+  <div class="container mx-auto mt-10">
     <form>
+      <div class="mb-4">
+        <label for="name" class="block text-sm font-medium text-gray-700">Name:</label>
+        <input type="text" id="name" name="name" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+      </div>
       <div class="mb-4">
         <label for="email" class="block text-sm font-medium text-gray-700">Email:</label>
         <input type="email" id="email" name="email" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
       </div>
       <div class="mb-4">
-        <label for="password" class="block text-sm font-medium text-gray-700">Contraseña:</label>
-        <input type="password" id="password" name="password" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+        <label for="message" class="block text-sm font-medium text-gray-700">Message:</label>
+        <textarea id="message" name="message" rows="4" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required></textarea>
       </div>
-      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Iniciar Sesión</button>
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Submit</button>
     </form>
   </div>
 
-   <!-- Footer -->
-   <footer class="bg-gray-800 text-white py-4 mt-10">
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-4 mt-10">
     <div class="container mx-auto text-center">
       <p>&copy; 2024 Libreria-Market. Todos los derechos reservados.</p>
       <div class="mt-4">
@@ -73,5 +77,3 @@
   </script>
 </body>
 </html>
-
-  
