@@ -1,9 +1,10 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { BookService } from '../../../services/book.service';
 import { CommonModule } from '@angular/common';
-import { Book, BookView } from '../../../models/bookView.model';
+import { BookView } from '../../../models/bookView.model';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms'
+import { CartService } from '../../../services/Cart.service';
+import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-book',
@@ -12,71 +13,84 @@ import { FormsModule } from '@angular/forms'
   templateUrl: './book.component.html',
   styleUrls: ['./book.component.css']
 })
-export class BookComponent {
-  filterdBooks: any;
-addToCart(arg0: number) {
-throw new Error('Method not implemented.');
-}
+export class BookComponent implements OnInit {
+  bookForm: FormGroup;
+  selectIdBook: number | null = null;
+  
   private bookService = inject(BookService);
-  private router = inject(Router)
-  books = signal<BookView[]>([]);
-  // filteredBooks = signal<BookView[]>([]);
-  dropdownOpen = false;
-  // filter = signal<string>('');
+  private cartService = inject(CartService);
+  private router = inject(Router);
   searchText: string = '';
+  dropdownOpen = false;
+  categories: string[] = ['Terror', 'Ciencia Ficción', 'Cronica', 'Novela', 'Misterio'];
+  books: BookView[] = [];
+  filteredBooks: BookView[] = [];
+  category: string = '';
 
-  categories = ['Terror', 'Ciencia Ficción', 'Cronica', 'Novela', 'Misterio'];
-
-  ngOnInit() {
-    this.getAll();
+  constructor(private fb: FormBuilder) {
+    this.bookForm = this.fb.group({
+      id_libro: [0],
+      nombre: [""],
+      titulo: [""],
+      categorias_nombre: [""],
+      precio: [0],
+      urls: [""],
+      quantity: [0]
+    });
   }
 
-  getAll() {
-    return this.bookService.viewBooks().subscribe(book => {
-      this.books.set(book);
-      this.filterdBooks.set(book);
+  ngOnInit() {
+    this.getAllBooks();
+  }
+
+  getAllBooks() {
+    this.bookService.viewBooks().subscribe(books => {
+      this.books = books;
+      this.filterBooks();
     }, error => {
       console.error('Error fetching books', error);
     });
   }
+
+  addToCart(event: Event, book: BookView): void {
+    event.preventDefault();  // Prevenir el comportamiento por defecto del botón
+    this.cartService.addToCart(book);
+    console.log(`Libro añadido al carrito: ${book.titulo}`);
+
+    // Redirigir a la página del carrito después de agregar al carrito
+    this.router.navigate(['/shoppingCart']);
+    
+  }
+  
 
   toggleDropdown(): void {
     this.dropdownOpen = !this.dropdownOpen;
   }
 
   selectCategory(category: string): void {
-    this.router.navigate(['/books/category', category])
-  }
-
-  onSearch(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    this.searchText = input.value;
+    this.category = category;
     this.filterBooks();
   }
 
-  onSearchButton(): void {
-    this.filterBooks();
+  filterBooks() {
+    if (this.category) {
+      this.filteredBooks = this.books.filter(book => book.categorias_nombre === this.category);
+    } else {
+      this.filteredBooks = this.books;
+    }
   }
 
-  filterBooks(): void {
-    const searchText = this.searchText.toLowerCase();
-    this.filterdBooks.set(this.books().filter(book =>
-      book.titulo.toLowerCase().includes(searchText) ||
-      book.nombre.toLowerCase().includes(searchText)
-    ));
+  onSearch(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.searchText = target.value;
+    this.filteredBooks = this.books.filter(book =>
+      book.titulo.toLowerCase().includes(this.searchText.toLowerCase())
+    );
   }
 
-  // En tu componente de Angular
-  addToCartHandler() {
-    // Lógica para agregar el libro al carrito
-    console.log('Agregar libro al carrito');
-  }
-
-  hideSideMenu = signal(false);
-  toogleSideMenu() {
-    this.hideSideMenu.update(prevState => !prevState);
+  onSearchButton() {
+    this.filteredBooks = this.books.filter(book =>
+      book.titulo.toLowerCase().includes(this.searchText.toLowerCase())
+    );
   }
 }
-
-
-

@@ -5,6 +5,7 @@ export interface BookView {
     categorias_nombre: string;
     precio: number;
     urls: string;
+    quantity: number;
   }
   export interface Book {
     id: number;
@@ -12,6 +13,7 @@ export interface BookView {
     titulo: string;
     categorias_nombre: string;
     precio: number;
-    urls: string; // Nueva propiedad para la URL de la imagen
+    urls: string; 
+    quantity: number;
   }
   

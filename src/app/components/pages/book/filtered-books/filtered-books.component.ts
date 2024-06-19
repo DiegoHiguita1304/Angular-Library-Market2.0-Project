@@ -1,25 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { BookService } from '../../../../services/book.service';
 import { BookView } from '../../../../models/bookView.model';
-import {ActivatedRoute} from '@angular/router'
+import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-filtered-books-component',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './filtered-books.component.html',
-  styleUrl: './filtered-books.component.css'
+  styleUrls: ['./filtered-books.component.css']
 })
-export class FilteredBooksComponent {
-addToCart(arg0: number) {
-throw new Error('Method not implemented.');
-}
-  // private bookService = inject(BookService);
-  // private route = inject(ActivatedRoute);
+export class FilteredBooksComponent implements OnInit {
+
+  private router = inject(Router);
+  searchText: string = '';
+  dropdownOpen: boolean = false;
+  categories: string[] = ['Terror', 'Ciencia Ficción', 'Cronica', 'Novela', 'Misterio'];
   books: BookView[] = [];
   filteredBooks: BookView[] = [];
   category: string = '';
+  cartService: any;
 
   constructor(private bookService: BookService, private route: ActivatedRoute) {}
 
@@ -46,5 +49,36 @@ throw new Error('Method not implemented.');
       this.filteredBooks = this.books;
     }
   }
-}
 
+  toggleDropdown() {
+    this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  selectCategory(category: string) {
+    this.category = category;
+    this.filterBooks();
+  }
+
+  addToCart(event: Event, book: BookView): void {
+    event.preventDefault();  // Prevenir el comportamiento por defecto del botón
+    this.cartService.addToCart(book);
+    console.log(`Libro añadido al carrito: ${book.titulo}`);
+    
+    // Redirigir a la página del carrito después de agregar al carrito
+    this.router.navigate(['/shoppingCart']);
+  }
+
+  onSearch(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.searchText = target.value;
+    this.filteredBooks = this.books.filter(book =>
+      book.titulo.toLowerCase().includes(this.searchText.toLowerCase())
+    );
+  }
+
+  onSearchButton() {
+    this.filteredBooks = this.books.filter(book =>
+      book.titulo.toLowerCase().includes(this.searchText.toLowerCase())
+    );
+  }
+}
