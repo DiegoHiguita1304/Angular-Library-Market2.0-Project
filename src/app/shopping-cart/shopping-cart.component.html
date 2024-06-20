@@ -1,76 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Libreria-Market</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+      
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <!-- Barra de navegación -->
+    <nav class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold">Libreria-Market</a>
+            <ul class="flex space-x-4">
+                <li><a href="#" class="nav-link">Inicio</a></li>  
+                <li><a href="/book" class="nav-link">Libros</a></li>
+                <li>
+                  <a href="/shoppingcart" class="nav-link cart-icon" (click)="handleClick($event)">
+                    <i class="fas fa-shopping-cart"></i>
+                  </a>
+                </li>
+                
+            </ul>
+        </div>
+    </nav>
+
 <div class="container py-5">
-  <h2 class="mb-4">Shopping Cart</h2>
-  <div class="table-responsive">
-    <table class="table">
-      <thead class="thead-light">
-        <tr>
-          <th scope="col">Titulo</th>
-          <th scope="col">Categoria</th>
-          <th scope="col">Precio</th>
-          <th scope="col">Cantidad</th>
-          <th scope="col">Total</th>
-          <th scope="col">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of items">
-          <td>{{ item.titulo }}</td>
-          <td>{{ item.categorias_nombre }}</td>
-          <td>{{ item.precio | currency }}</td>
-          <td>
-            <div class="d-flex align-items-center">
-              <button class="btn btn-link" (click)="decreaseQuantity(item)">
-                <i class="fas fa-minus"></i>
-              </button>
-              <input type="number" min="1" [(ngModel)]="item.quantity" class="form-control form-control-sm mx-2" style="width: 50px;">
-              <button class="btn btn-link" (click)="increaseQuantity(item)">
-                <i class="fas fa-plus"></i>
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-lg-8">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col" class="h5">Producto</th>
+              <br>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Precio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of items">
+              <td>
+                <div class="d-flex align-items-center">
+                  <img src="{{ item.urls }}" class="img-fluid rounded-3" style="width: 120px;" alt="{{ item.titulo }}">
+                  <div class="flex-column ms-4">
+                    <p class="mb-2">{{ item.titulo }}</p>
+                    <p class="mb-0">{{ item.autor }}</p>
+                  </div>
+                </div>
+              </td>
+              <td class="align-middle">
+                <p class="mb-0" style="font-weight: 500;">{{ item.formato }}</p>
+              </td>
+              <td class="align-middle">
+                <div class="d-flex flex-row">
+                  <button class="btn btn-link px-2" (click)="decreaseQuantity(item)">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <input type="number" min="1" [(ngModel)]="item.quantity" class="form-control form-control-sm mx-2" style="width: 50px;">
+                  <button class="btn btn-link px-2" (click)="increaseQuantity(item)">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+              </td>
+              <td class="align-middle">
+                <p class="mb-0" style="font-weight: 500;">{{ (item.precio * item.quantity) | currency }}0</p>
+              </td>
+              <td>
+                <button class="btn btn-link text-danger" (click)="removeFromCart(item)">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card shadow-2-strong mb-5 mb-lg-0" style="border-radius: 16px;">
+        <div class="card-body p-4">
+          <div class="row">
+            <div class="col-lg-6 col-xl-4 mb-4 mb-lg-0">
+              <h4>Verificar</h4>
+              <form>
+                <div class="d-flex flex-row pb-3">
+                  <div class="d-flex align-items-center pe-2">
+                    <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" value="credit" checked />
+                  </div>
+                  <div class="rounded border w-100 p-3">
+                    <p class="d-flex align-items-center mb-0">
+                      <i class="fab fa-cc-mastercard fa-2x text-body pe-2"></i>Tarjeta de Crédito
+                    </p>
+                  </div>
+                </div>
+                <div class="d-flex flex-row pb-3">
+                  <div class="d-flex align-items-center pe-2">
+                    <input class="form-check-input" type="radio" name="paymentMethod" id="debitCard" value="debit" />
+                  </div>
+                  <div class="rounded border w-100 p-3">
+                    <p class="d-flex align-items-center mb-0">
+                      <i class="fab fa-cc-visa fa-2x fa-lg text-body pe-2"></i>Tarjeta de Débito
+                    </p>
+                  </div>
+                </div>
+                <div class="d-flex flex-row pb-3">
+                  <div class="d-flex align-items-center pe-2">
+                    <input class="form-check-input" type="radio" name="paymentMethod" id="paypal" value="paypal" />
+                  </div>
+                  <div class="rounded border w-100 p-3">
+                    <p class="d-flex align-items-center mb-0">
+                      <i class="fab fa-cc-paypal fa-2x fa-lg text-body pe-2"></i>PayPal
+                    </p>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-lg-6 col-xl-4 mb-4 mb-lg-0">
+              <div class="row">
+                <div class="col-12 col-xl-6">
+                  <div class="form-outline mb-4 mb-xl-5">
+                    <input type="text" id="typeName" class="form-control form-control-lg" placeholder="John Smith" />
+                    <label class="form-label" for="typeName">Nombre en la Tarjeta</label>
+                  </div>
+                  <div class="form-outline mb-4 mb-xl-5">
+                    <input type="text" id="typeExp" class="form-control form-control-lg" placeholder="MM/YY" />
+                    <label class="form-label" for="typeExp">Expiración</label>
+                  </div>
+                </div>
+                <div class="col-12 col-xl-6">
+                  <div class="form-outline mb-4 mb-xl-5">
+                    <input type="text" id="typeText" class="form-control form-control-lg" placeholder="1111 2222 3333 4444" />
+                    <label class="form-label" for="typeText">Número de Tarjeta</label>
+                  </div>
+                  <div class="form-outline mb-4 mb-xl-5">
+                    <input type="password" id="typeCvv" class="form-control form-control-lg" placeholder="•••" />
+                    <label class="form-label" for="typeCvv">Clave</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4">
+              <div class="d-flex justify-content-between" style="font-weight: 500;">
+                <p class="mb-2">Subtotal</p>
+                <p class="mb-2">{{ getSubtotal() | currency }}0</p>
+              </div>
+              <div class="d-flex justify-content-between" style="font-weight: 500;">
+                <p class="mb-0">Envío</p>
+                <p class="mb-0">{{ shipping | currency }}0</p>
+              </div>
+              <hr class="my-4">
+              <div class="d-flex justify-content-between mb-4" style="font-weight: 500;">
+                <p class="mb-2">Total (impuestos incluidos)</p>
+                <p class="mb-2">{{ getTotal() | currency }}0</p>
+              </div>
+              <button type="button" class="btn btn-primary btn-block btn-lg" (click)="checkout()">
+                <div class="d-flex justify-content-between">
+                  <span>Pasar a Caja</span>
+                  <span>{{ getTotal() | currency }}0</span>
+                </div>
               </button>
             </div>
-          </td>
-          <td>{{ (item.precio * item.quantity) | currency }}</td>
-          <td>
-            <button class="btn btn-link text-danger" (click)="removeFromCart(item)">
-              <i class="fas fa-trash-alt"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <hr>
-
-  <div class="row">
-    <div class="col-md-6">
-      <h4>Summary</h4>
-      <p>Subtotal: {{ getSubtotal() | currency }}</p>
-      <p>Shipping: {{ shipping | currency }}</p>
-      <h3>Total: {{ getTotal() | currency }}</h3>
-    </div>
-    <div class="col-md-6">
-      <div class="card p-4">
-        <h4>Checkout</h4>
-        <form class="checkout-form">
-          <div class="mb-3">
-            <label for="typeName" class="form-label">Name on card</label>
-            <input type="text" id="typeName" class="form-control" placeholder="John Smith">
           </div>
-          <div class="mb-3">
-            <label for="typeExp" class="form-label">Expiration</label>
-            <input type="text" id="typeExp" class="form-control" placeholder="MM/YY">
-          </div>
-          <div class="mb-3">
-            <label for="typeText" class="form-label">Card Number</label>
-            <input type="text" id="typeText" class="form-control" placeholder="1111 2222 3333 4444">
-          </div>
-          <div class="mb-3">
-            <label for="typeCvv" class="form-label">CVV</label>
-            <input type="password" id="typeCvv" class="form-control" placeholder="•••">
-          </div>
-          <button type="button" class="btn btn-primary btn-lg btn-block" (click)="checkout()">Proceed to Checkout</button>
-        </form>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white py-4 mt-10">
+  <div class="container mx-auto text-center">
+    <p>&copy; 2024 Libreria-Market. Todos los derechos reservados.</p>
+    <div class="mt-4">
+      <a href="https://www.facebook.com" target="_blank" class="text-white mr-4">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://www.instagram.com" target="_blank" class="text-white mr-4">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.google.com" target="_blank" class="text-white mr-4">
+        <i class="fab fa-google"></i>
+      </a>
+      <a href="https://twitter.com" target="_blank" class="text-white mr-4">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://www.tiktok.com" target="_blank" class="text-white">
+        <i class="fab fa-tiktok"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+
+                                      

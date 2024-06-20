@@ -14,6 +14,9 @@ import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
   styleUrls: ['./book.component.css']
 })
 export class BookComponent implements OnInit {
+handleClick($event: MouseEvent) {
+throw new Error('Method not implemented.');
+}
   bookForm: FormGroup;
   selectIdBook: number | null = null;
   

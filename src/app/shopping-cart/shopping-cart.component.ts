@@ -10,15 +10,36 @@ import { CartService } from "./../services/Cart.service";
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent {
-    items: any[] = []; // Aquí almacenarás los libros agregados al carrito
-    shipping: number = 10; // Costo de envío (puedes cambiarlo según tu aplicación)
+handleClick($event: MouseEvent) {
+throw new Error('Method not implemented.');
+}
+searchText: any;
+filteredBooks: any;
+book: any;
+onSearchButton() {
+throw new Error('Method not implemented.');
+}
+onSearch($event: Event) {
+throw new Error('Method not implemented.');
+}
+selectCategory(_t25: any) {
+throw new Error('Method not implemented.');
+}
+dropdownOpen: any;
+categories: any;
+toggleDropdown() {
+throw new Error('Method not implemented.');
+}
+    items: any[] = []; // Aquí se almacenan los libros agregados al carrito
+    shipping: number = 10; // Costo de envío 
   
     constructor(private cartService: CartService) {
       this.items = this.cartService.getItems(); // Obtener los ítems del servicio de carrito al inicializar el componente
     }
 
   removeFromCart(item: any): void {
-    this.cartService.removeFromCart(item); // Llamar al método para eliminar un ítem del carrito en el servicio
+    const index = this.items.indexOf(item);
+    this.items.splice(index, 1); // Llamar al método para eliminar un ítem del carrito en el servicio
   }
 
   increaseQuantity(item: any): void {
@@ -40,15 +61,14 @@ export class ShoppingCartComponent {
   }
 
   checkout(): void {
-    // Implementar aquí la lógica para procesar el checkout, como enviar los datos del pago a un servicio
-    // Por ejemplo, aquí podrías llamar a un servicio de pago para realizar la transacción
-    console.log('Proceeding to checkout...');
+    console.log('Checking out', this.items);
+    alert('Procediendo al pago. Cantidad total: ' + this.getTotal());
   }
 }
 
 @NgModule({
   declarations: [ShoppingCartComponent],
-  imports: [CommonModule, FormsModule], // Añade FormsModule aquí para usar ngModel
+  imports: [CommonModule, FormsModule], 
   exports: [ShoppingCartComponent]
 })
-export class ShoppingCartModule {} // Exporta el módulo si es necesario
+export class ShoppingCartModule {} 
