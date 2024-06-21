@@ -1,12 +1,45 @@
 .nav-link {
-    font-size: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding: 8px 12px;
-    border-bottom: 2px solid transparent;
-    transition: border-color 0.3s ease;
-  }
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
 
-  .nav-link:hover {
-    border-color: white;
-  }
+.nav-link:hover {
+  border-color: white;
+}
+
+
+.form-control {
+  border-radius: 0.375rem;
+}
+
+.btn-primary {
+  border-radius: 0.375rem;
+}
+
+.footer {
+  background-color: #343a40;
+  color: white;
+}
+
+.footer a {
+  color: white;
+  margin-right: 1rem;
+}
+
+.footer a:hover {
+  text-decoration: none;
+}
+
+.card {
+  border: none;
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-label {
+  font-weight: bold;
+}
