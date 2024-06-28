@@ -61,9 +61,11 @@ throw new Error('Method not implemented.');
   }
 
   checkout(): void {
+    const total = this.getTotal().toFixed(3); // Convierte el total a un string con 3 decimales
     console.log('Checking out', this.items);
-    alert('Procediendo al pago. Cantidad total: ' + this.getTotal());
+    alert(`Procediendo al pago. Cantidad total: ${total}`);
   }
+  
 }
 
 @NgModule({
