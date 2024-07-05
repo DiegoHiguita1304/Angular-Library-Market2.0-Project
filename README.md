@@ -2,6 +2,26 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.2.
 
+## Components
+
+- **FilteredBooksComponent**: Displays a list of filtered books.
+- **BookComponent**: Shows detailed information of a book.
+- **ContactComponent**: Contact page.
+- **LoginComponent**: Login page.
+- **HomeComponent**: Homepage.
+- **RegisterComponent**: New user registration page.
+- **ShoppingCartComponent**: Shows books added to the shopping cart.
+
+## Models
+
+- **BookView**: Model that represents the view of a book.
+
+## Services
+
+- **BookService**: Book management service.
+- **CartService**: Shopping cart management service.
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
